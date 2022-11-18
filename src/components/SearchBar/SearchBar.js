@@ -26,6 +26,10 @@ const SearchBar = ({ placeHolder, data }) => {
     setEnteredData("");
   };
 
+  function ClickMe(data) {
+    console.log(data);
+  }
+
   return (
     <div className="search">
       <div className="searchInputs">
@@ -48,8 +52,8 @@ const SearchBar = ({ placeHolder, data }) => {
         <div className="dataResult">
           {filteredData.slice(0, 15).map((value, k) => {
             return (
-              <div className="dataItem" key={k}>
-                <a href="http://www.google.com">{value.PolicyID}</a>
+              <div className="dataItem" key={k} onClick={() => ClickMe(value.Acreage)}>
+                {value.PolicyID}
               </div>
             );
           })}
