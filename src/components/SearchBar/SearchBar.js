@@ -3,19 +3,32 @@ import React, { useState } from "react";
 import "./SearchBar.css";
 import SearchIcon from "@mui/icons-material/Search";
 import CloseIcon from "@mui/icons-material/Close";
+import axios from 'axios';
 
-const SearchBar = ({ placeHolder, data }) => {
+
+const SearchBar = ({ placeHolder, data2 }) => {
   const [filteredData, setFilteredData] = useState([]);
   const [enteredData, setEnteredData] = useState([]);
+  const [data, setData] = useState([]);
 
   const handleFilter = (event) => {
     const searchPolicyId = event.target.value;
     setEnteredData(searchPolicyId);
+
+    //loaded data from API
+
+    axios.get('https://gist.githubusercontent.com/enukeWebDev/31caa8e9213a56d3c353d23ba9a71fd0/raw/clean_data.json')
+    .then(res => {
+      setData(res.data);
+      console.log(res.data)
+    })
+
     const newFilterData = data.filter((value) => {
-      return value.PolicyID.toLowerCase().includes(
+      return value.policyID.toLowerCase().includes(
         searchPolicyId.toLowerCase()
       );
     });
+
     if (searchPolicyId === "") {
       setFilteredData([]);
     } else setFilteredData(newFilterData);
@@ -54,7 +67,7 @@ const SearchBar = ({ placeHolder, data }) => {
           {filteredData.slice(0, 15).map((value, k) => {
             return (
               <div className="dataItem" key={k} onClick={() => ClickMe(value.Acreage)}>
-                {value.PolicyID}
+                {value.policyID}
               </div>
             );
           })}
