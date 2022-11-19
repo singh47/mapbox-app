@@ -16,6 +16,7 @@ const SearchBar = ({ placeHolder, data }) => {
         searchPolicyId.toLowerCase()
       );
     });
+    console.log(newFilterData);
     if (searchPolicyId === "") {
       setFilteredData([]);
     } else setFilteredData(newFilterData);
