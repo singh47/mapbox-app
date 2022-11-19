@@ -6,6 +6,8 @@ import { Routes, Route } from "react-router-dom";
 import Sidebar from "./scenes/global/Sidebar";
 import Topbar from "./scenes/global/Topbar";
 import Dashboard from "./scenes/dashboard";
+import MapboxDemo1 from "./components/MapBox/Mapbox1";
+
 // import Team from "./scenes/team";
 // import Invoices from "./scenes/invoices";
 // import Calendar from "./scenes/calendar";
@@ -26,8 +28,10 @@ const App = () => {
         <CssBaseline />
         <div className="app">
           <Sidebar />
+
           <main className="content">
             <Topbar />
+            <MapboxDemo1 />
             <Routes>
               <Route path="/" element={<Dashboard />} />
               {/* <Route path="/team" element={<Team />} /> */}
