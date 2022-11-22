@@ -4,9 +4,18 @@ import "./SearchBar.css";
 import SearchIcon from "@mui/icons-material/Search";
 import CloseIcon from "@mui/icons-material/Close";
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import store from "../../store";
 
+//export const LocaleContext = React.createContext();
 
 const SearchBar = ({ placeHolder, data2 }) => {
+
+  //const dispatch = useDispatch();
+  console.log("sTATAT");
+  console.log(store.getState());
+  
+
   const [filteredData, setFilteredData] = useState([]);
   const [enteredData, setEnteredData] = useState([]);
   const [data, setData] = useState([]);
@@ -40,7 +49,13 @@ const SearchBar = ({ placeHolder, data2 }) => {
   };
 
   function ClickMe(data) {
-    console.log(data);
+    let ar = [[-70.64573, 43.09008],
+     [-70.75102, 43.08003],
+     [-70.79761, 43.21973],
+     [-70.98176, 43.36789],
+     [-67.13734, 45.13745]];
+
+    store.dispatch({type: 'long', long: ar});
   }
 
   
@@ -66,7 +81,7 @@ const SearchBar = ({ placeHolder, data2 }) => {
         <div className="dataResult">
           {filteredData.slice(0, 15).map((value, k) => {
             return (
-              <div className="dataItem" key={k} onClick={() => ClickMe(value.Acreage)}>
+              <div className="dataItem" key={k} onClick={() =>ClickMe(value.geometry)}>
                 {value.policyID}
               </div>
             );
