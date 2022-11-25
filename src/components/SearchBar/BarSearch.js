@@ -11,6 +11,7 @@ import { ColorModeContext, tokens } from "../../theme";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
 
+
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 
@@ -35,7 +36,7 @@ const BarSearch = ({placeHolder, data1}) => {
   
       //loaded data from API
   
-      axios.get('https://gist.githubusercontent.com/enukeWebDev/31caa8e9213a56d3c353d23ba9a71fd0/raw/clean_data.json')
+      axios.get('https://gist.githubusercontent.com/enukeWebDev/0eebd793aef17f5b22d9334c9a2752a2/raw/test_data.json')
       .then(res => {
         setData(res.data);
         console.log(res.data)
@@ -70,7 +71,7 @@ const BarSearch = ({placeHolder, data1}) => {
   
 
   return (
-  
+      
       <Box
         display=""
         backgroundColor={colors.primary[600]}
