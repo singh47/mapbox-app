@@ -5,6 +5,9 @@ import Map, { Source, Layer, NavigationControl } from "react-map-gl";
 // import { MAP_BOX_TOKEN } from "../../utils/constants";
 import store from "../../store";
 import { useSelector, connect } from "react-redux";
+//import { MapboxStyle, MapRef, MapLayerMouseEvent} from 'react-map-gl';
+//import {useRef} from 'react';
+//import bbox from '@turf/bbox';
 
 
 function MapboxDemo1 (props) {
@@ -24,6 +27,25 @@ function MapboxDemo1 (props) {
         }
     ]
    }
+
+  //  const mapRef = useRef();
+  //  const onClick = (event) => {
+  //   console.log(event);
+  //   const feature = event.lngLat;
+  //   console.log(feature.lng);
+  //   if (feature) {
+  //     // calculate the bounding box of the feature
+  //     //const [minLng, minLat, maxLng, maxLat] =  //bbox(feature);
+
+  //     mapRef.current.fitBounds(
+  //       [
+  //         [feature.lng, feature.lat],
+  //         [feature.lng, feature.lat]
+  //       ],
+  //       {padding: 40, duration: 1000}
+  //     );
+  //   }
+  // };
 
    const layerStyle = {
     id: 'outline',
@@ -62,6 +84,7 @@ function MapboxDemo1 (props) {
       mapStyle="mapbox://styles/erickn23/cl9f0c0go001f14p7ct0oqbqt"
       mapboxAccessToken={MAP_BOX_TOKEN}
       type ="geojson"
+      //onClick={onClick}
       data={{
       type: 'Feature',
       geometry: {
@@ -87,7 +110,6 @@ function MapboxDemo1 (props) {
 }
 
 const mapStateToProps = (store) => {
-  console.log(store, "SSSSS");
   return {
     long: store
   }
