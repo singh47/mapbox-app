@@ -3,6 +3,7 @@ import { ProSidebar, Menu, MenuItem } from "react-pro-sidebar";
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
 
 import SearchBar from "../../components/SearchBar/SearchBar";
+import BarSearch from "../../components/SearchBar/BarSearch";
 
 import "react-pro-sidebar/dist/css/styles.css";
 
@@ -50,7 +51,7 @@ const Sidebar = () => {
             
             {!isCollapsed && (
               <Box
-                display="flex"
+                display="flex flex-col"
                 justifyContent="space-between"
                 alignItems="center"
                 ml="15px"
@@ -63,7 +64,7 @@ const Sidebar = () => {
             )}
           </MenuItem>
 
-          {/* <Box
+            {/* <Box
               display="flex"
               backgroundColor={colors.primary[200]}
               borderRadius="3px"
@@ -73,8 +74,8 @@ const Sidebar = () => {
                 <SearchIcon />
                 <InputBase sx={{ ml: 2, flex: 1 }} placeholder="Search" />
               </IconButton>
-          </Box> */}
-<Box
+          </Box>  */}
+            {/* <Box
               display="flex"
               backgroundColor={colors.primary[200]}
               borderRadius="3px"
@@ -87,9 +88,15 @@ const Sidebar = () => {
             <Box mb="25px">
               
             </Box>
-          )}
+          )}  */}
+
+          <BarSearch placeHolder="Search" data={[]} />  
+
+
         </Menu>
+
       </ProSidebar>
+
     </Box>
   );
 };
