@@ -73,7 +73,7 @@ const BarSearch = ({placeHolder, data1}) => {
   
       <Box
         display=""
-        backgroundColor={colors.primary[400]}
+        backgroundColor={colors.primary[600]}
         borderRadius="3px"
       >
         <div className="SearchInputs">

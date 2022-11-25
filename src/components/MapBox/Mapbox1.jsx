@@ -80,9 +80,9 @@ function MapboxDemo1 (props) {
   return (
     <Map
       initialViewState={{
-        longitude: -67,
-        latitude: 45,
-        zoom: 5.103473284690827,
+        longitude: -106,
+        latitude: 52,
+        zoom: 5.40,
       }}
       style={{ width: "100%", height: "100vh" }}
       mapStyle="mapbox://styles/erickn23/cl9f0c0go001f14p7ct0oqbqt"
