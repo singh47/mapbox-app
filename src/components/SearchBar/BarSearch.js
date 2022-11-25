@@ -59,14 +59,16 @@ const BarSearch = ({placeHolder, data1}) => {
     };
   
     function ClickMe(data) {
+
+      const dd = JSON.parse(data);
+
+      // let ar = [[-70.64573, 43.09008],
+      //  [-70.75102, 43.08003],
+      //  [-70.79761, 43.21973],
+      //  [-70.98176, 43.36789],
+      //  [-67.13734, 45.13745]];
   
-      let ar = [[-70.64573, 43.09008],
-       [-70.75102, 43.08003],
-       [-70.79761, 43.21973],
-       [-70.98176, 43.36789],
-       [-67.13734, 45.13745]];
-  
-      store.dispatch({type: 'long', long: ar});
+      store.dispatch({type: 'long', long: dd});
     }
   
 

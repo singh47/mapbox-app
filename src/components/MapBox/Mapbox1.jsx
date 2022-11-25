@@ -18,9 +18,8 @@ function MapboxDemo1 (props) {
         geometry: {
           type: 'Polygon',
           // These coordinates outline Maine.
-          'coordinates': [
-            props.long,
-            ]
+          'coordinates': 
+            props.long
           }
         }
     ]
@@ -49,13 +48,6 @@ function MapboxDemo1 (props) {
       'fill-opacity': 0.5
       }
     }
-
-  // store.subscribe(() => {
-  //   console.log("CHAAHHAHAHAHHHAa");
-  //   console.log(store.getState());
-  // });
-
-  //const long = useSelector(state => store.getState());
 
   console.log(props.long, "LONG HERE PROPS")
 
