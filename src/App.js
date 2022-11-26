@@ -28,7 +28,6 @@ const App = () => {
         <CssBaseline />
         <div className="app">
           <Sidebar />
-
           <main className="content">
             <Topbar />
             <MapboxDemo1 />

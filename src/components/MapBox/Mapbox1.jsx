@@ -8,6 +8,7 @@ import { useSelector, connect } from "react-redux";
 //import { MapboxStyle, MapRef, MapLayerMouseEvent} from 'react-map-gl';
 //import {useRef} from 'react';
 //import bbox from '@turf/bbox';
+import {useState} from 'react';
 
 
 function MapboxDemo1 (props) {
@@ -27,6 +28,10 @@ function MapboxDemo1 (props) {
         }
     ]
    }
+
+  //  const onClick= e => {
+  //   setPopupInfo(e);
+  //  }
 
   //  const mapRef = useRef();
   //  const onClick = (event) => {
@@ -101,10 +106,13 @@ function MapboxDemo1 (props) {
         }}
 
     >
+
+
       <Source id= "my-data" type="geojson" data={geojson}>
         <Layer {...addLayer} />
       </Source>
-      <NavigationControl />
+
+        <NavigationControl />
     </Map>
   );
 }

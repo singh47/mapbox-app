@@ -11,6 +11,7 @@ import { tokens } from "../../theme";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import axios from 'axios';
 import {useEffect, componentDidMount} from 'react';
+import BoxComponentx from "../../components/Box/DetailBox";
 
 const Sidebar = () => {
   const theme = useTheme();
@@ -92,6 +93,7 @@ const Sidebar = () => {
 
           <BarSearch placeHolder="Search" data={[]} />  
 
+          <BoxComponentx />
 
         </Menu>
 
