@@ -5,6 +5,9 @@ import Map, { Source, Layer, NavigationControl } from 'react-map-gl';
 // import { MAP_BOX_TOKEN } from "../../utils/constants";
 import store from '../../store';
 import { useSelector, connect } from 'react-redux';
+//import { MapboxStyle, MapRef, MapLayerMouseEvent} from 'react-map-gl';
+//import {useRef} from 'react';
+//import bbox from '@turf/bbox';
 
 function MapboxDemo1(props) {
   console.log('Bob the builder....');
@@ -18,31 +21,31 @@ function MapboxDemo1(props) {
         geometry: {
           type: 'Polygon',
           // These coordinates outline Maine.
-          coordinates: [
-            props.long,
-            //[
 
-            // [-70.64573, 43.09008],
-            // [-70.75102, 43.08003],
-            // [-70.79761, 43.21973],
-            // [-70.98176, 43.36789],
-            // [-70.94416, 43.46633],
-            // [-71.08482, 45.30524],
-            // [-70.66002, 45.46022],
-            // [-70.30495, 45.91479],
-            // [-70.00014, 46.69317],
-            // [-69.23708, 47.44777],
-            // [-68.90478, 47.18479],
-            // [-68.2343, 47.35462],
-            // [-67.79035, 47.06624],
-            // [-67.79141, 45.70258],
-            // [-67.13734, 45.13745]
-            //]
-          ],
+          coordinates: props.long,
         },
       },
     ],
   };
+
+  //  const mapRef = useRef();
+  //  const onClick = (event) => {
+  //   console.log(event);
+  //   const feature = event.lngLat;
+  //   console.log(feature.lng);
+  //   if (feature) {
+  //     // calculate the bounding box of the feature
+  //     //const [minLng, minLat, maxLng, maxLat] =  //bbox(feature);
+
+  //     mapRef.current.fitBounds(
+  //       [
+  //         [feature.lng, feature.lat],
+  //         [feature.lng, feature.lat]
+  //       ],
+  //       {padding: 40, duration: 1000}
+  //     );
+  //   }
+  // };
 
   const layerStyle = {
     id: 'outline',
@@ -69,55 +72,24 @@ function MapboxDemo1(props) {
     },
   };
 
-  // store.subscribe(() => {
-  //   console.log("CHAAHHAHAHAHHHAa");
-  //   console.log(store.getState());
-  // });
-
-  //const long = useSelector(state => store.getState());
-
-  console.log(props.long, 'LONG HERE PROPS');
-
   return (
     <Map
       initialViewState={{
-        longitude: -105.88885,
-        latitude: 54.418583,
-        zoom: 4s.103473284690827,
+        longitude: -106,
+        latitude: 52,
+        zoom: 5.4,
       }}
       style={{ width: '100%', height: '100vh' }}
       mapStyle="mapbox://styles/erickn23/cl9f0c0go001f14p7ct0oqbqt"
       mapboxAccessToken={MAP_BOX_TOKEN}
       type="geojson"
+      //onClick={onClick}
       data={{
         type: 'Feature',
         geometry: {
           type: 'Polygon',
           // These coordinates outline Maine.
-          coordinates: [
-            // [
-            // [-67.13734, 45.13745],
-            // [-66.96466, 44.8097],
-            // [-68.03252, 44.3252],
-            // [-69.06, 43.98],
-            // [-70.11617, 43.68405],
-            // [-70.64573, 43.09008],
-            // [-70.75102, 43.08003],
-            // [-70.79761, 43.21973],
-            // [-70.98176, 43.36789],
-            // [-70.94416, 43.46633],
-            // [-71.08482, 45.30524],
-            // [-70.66002, 45.46022],
-            // [-70.30495, 45.91479],
-            // [-70.00014, 46.69317],
-            // [-69.23708, 47.44777],
-            // [-68.90478, 47.18479],
-            // [-68.2343, 47.35462],
-            // [-67.79035, 47.06624],
-            // [-67.79141, 45.70258],
-            // [-67.13734, 45.13745]
-            // ]
-          ],
+          coordinates: [],
         },
       }}
       paint={{
@@ -134,7 +106,6 @@ function MapboxDemo1(props) {
 }
 
 const mapStateToProps = (store) => {
-  console.log(store, 'SSSSS');
   return {
     long: store,
   };
