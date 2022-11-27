@@ -13,17 +13,15 @@ import SearchIcon from "@mui/icons-material/Search";
 
 
 import TextField from '@mui/material/TextField';
-import Autocomplete from '@mui/material/Autocomplete';
 
 
 
 const BarSearch = ({placeHolder, data1}) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-  const colorMode = useContext(ColorModeContext);
+  // const colorMode = useContext(ColorModeContext);
 
     console.log(store.getState());
-    
   
     const [filteredData, setFilteredData] = useState([]);
     const [enteredData, setEnteredData] = useState([]);
@@ -34,7 +32,6 @@ const BarSearch = ({placeHolder, data1}) => {
       setEnteredData(searchPolicyId);
   
       //loaded data from API
-  
       axios.get('https://gist.githubusercontent.com/enukeWebDev/0eebd793aef17f5b22d9334c9a2752a2/raw/test_data.json')
       .then(res => {
         setData(res.data);
@@ -58,61 +55,47 @@ const BarSearch = ({placeHolder, data1}) => {
     };
   
     function ClickMe(data) {
-
-      // let ar = [[-70.64573, 43.09008],
-      //  [-70.75102, 43.08003],
-      //  [-70.79761, 43.21973],
-      //  [-70.98176, 43.36789],
+      // let ar = [[-70.64573, 43.09008]
       //  [-67.13734, 45.13745]];
-  
       store.dispatch({type: 'long', long: data});
     }
   
 
   return (
       
-      <Box
-        display=""
+      <div>
+        <Box 
+        display="flex"
         backgroundColor={colors.primary[600]}
         borderRadius="3px"
-      >
-        <div className="SearchInputs">
+        >
           <InputBase 
           sx={{ ml: 2, flex: 1 }} 
           placeholder={placeHolder} 
           value={enteredData}
           onChange={handleFilter}
           />
-          <IconButton type="button" sx={{ p: 1 }}>
-          {filteredData.length === 0 ? (
+          <IconButton type="button" sx={{  px: 3}}>
+          {(filteredData.length === 0 )? 
               <SearchIcon />
-            ) : (
-              <CloseIcon id="clearBtn" onClick={clearInput} />
-            )}
-            {/* <SearchIcon /> */}
+             : 
+              <CloseIcon id="" onClick={clearInput} />
+            }
           </IconButton>
-        </div>
-
-        {/* <div className="searchIcon">
-          {filteredData.length === 0 ? (
-            <SearchIcon />
-          ) : (
-            <CloseIcon id="clearBtn" onClick={clearInput} />
-          )}
-        </div> */}
-        
+        </Box>
+          
         {filteredData.length !== 0 && (
           <div className="dataResult">
             {filteredData.slice(0, 15).map((value, k) => {
               return (
                 <div className="dataItem" key={k} onClick={() =>ClickMe(value.geometry)}>
-                  {value.policyID}
+                  <p>{value.policyID}</p>
                 </div>
               );
             })}
           </div>
         )}
-      </Box>
+      </div>
   );
 };
 

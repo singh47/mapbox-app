@@ -13,10 +13,32 @@ import axios from 'axios';
 import {useEffect, componentDidMount} from 'react';
 import BoxComponentx from "../../components/Box/DetailBox";
 
+import InputBase from "@mui/material/InputBase";
+import SearchIcon from "@mui/icons-material/Search";
+import store from "../../store";
+
+
+import TextField from '@mui/material/TextField';
+import Stack from '@mui/material/Stack';
+import Autocomplete from '@mui/material/Autocomplete';
+
+
 const Sidebar = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [isCollapsed, setIsCollapsed] = useState(false);
+
+  const [data, setData] = useState([]);
+  const fetchdata = async () => {
+      const res = await axios.get('https://gist.githubusercontent.com/enukeWebDev/0eebd793aef17f5b22d9334c9a2752a2/raw/test_data.json');
+      setData(res.data);
+  };
+  useEffect(() => { fetchdata(); }, []);
+  console.log("api data",data);
+
+  function sendData(e, data) {
+    store.dispatch({type: 'long', long: data});
+  }
 
   return (
     <Box
@@ -52,7 +74,7 @@ const Sidebar = () => {
             
             {!isCollapsed && (
               <Box
-                display="flex flex-col"
+                display="flex"
                 justifyContent="space-between"
                 alignItems="center"
                 ml="15px"
@@ -64,16 +86,18 @@ const Sidebar = () => {
               </Box>
             )}
           </MenuItem>
-
+            
+          
             {/* <Box
               display="flex"
-              backgroundColor={colors.primary[200]}
-              borderRadius="3px"
+              backgroundColor={colors.primary[380]}
+              borderRadius="4px"
+              borderColor= {colors.primary[420]}
+              border="1px solid"
             >
               <InputBase sx={{ ml: 2, flex: 1 }} placeholder="Search" />
               <IconButton type="button" sx={{ px: 3 }}>
                 <SearchIcon />
-                <InputBase sx={{ ml: 2, flex: 1 }} placeholder="Search" />
               </IconButton>
           </Box>  */}
             {/* <Box
@@ -91,9 +115,30 @@ const Sidebar = () => {
             </Box>
           )}  */}
 
-          <BarSearch placeHolder="Search" data={[]} />  
 
-          <BoxComponentx />
+           
+          {isCollapsed && (
+            <IconButton sx={{ p: 3, justifyContent: "center"}}>
+              <SearchIcon />
+            </IconButton>
+          )}
+          {!isCollapsed && (
+            <BoxComponentx props={"Farm Details"}/>
+          )}
+         {!isCollapsed &&(
+         <Stack spacing={2} sx={{ width: "auto" }}>
+          <Autocomplete
+            options={data}
+            // options={data.map((option) => option.policyID)}
+            getOptionLabel={(option) => option.policyID}
+            onChange={(e, value) => {if(value!=null)sendData(e.target, value.geometry)}}
+            renderInput={(params) => <TextField {...params}
+            label="Search Policy ID.." />}
+          />  
+          </Stack>
+          )}
+
+          {/* <BarSearch  placeHolder="Search" data={[]} />   */}
 
         </Menu>
 
@@ -102,5 +147,6 @@ const Sidebar = () => {
     </Box>
   );
 };
+
 
 export default Sidebar;
