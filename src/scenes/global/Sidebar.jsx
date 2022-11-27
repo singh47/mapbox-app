@@ -30,7 +30,7 @@ const Sidebar = () => {
 
   const [data, setData] = useState([]);
   const fetchdata = async () => {
-      const res = await axios.get('https://gist.githubusercontent.com/enukeWebDev/0eebd793aef17f5b22d9334c9a2752a2/raw/test_data.json');
+      const res = await axios.get('https://gist.githubusercontent.com/enukeWebDev/bbb5ec0b4459555a0c3573b3b6d7a200/raw/final_data.json');
       setData(res.data);
   };
   useEffect(() => { fetchdata(); }, []);
@@ -79,7 +79,8 @@ const Sidebar = () => {
                 alignItems="center"
                 ml="15px"
               >
-                <Typography variant="h3" color={colors.grey[100]}></Typography>
+
+                <Typography variant="h3" color={colors.grey[100]}>Farm Details</Typography>
                 <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
                   <MenuOutlinedIcon />
                 </IconButton>
@@ -87,6 +88,27 @@ const Sidebar = () => {
             )}
           </MenuItem>
             
+          <MenuItem 
+          // onClick={() => setIsCollapsed(!isCollapsed)}
+          icon={isCollapsed ? <SearchIcon /> : undefined}
+          style={{
+              margin: "10px 0 10px 0",
+              color: colors.grey[100],
+            }}>
+
+          {!isCollapsed &&(
+          <Stack spacing={2} sx={{ width: "auto" }}>
+            <Autocomplete
+              options={data}
+              // options={data.map((option) => option.policyID)}
+              getOptionLabel={(option) => option.policyID}
+              onChange={(e, value) => {if(value!=null)sendData(e.target, value.geometry)}}
+              renderInput={(params) => <TextField {...params}
+              label="Search Policy ID.." />}
+            />  
+          </Stack>
+          )}
+          </MenuItem>
           
             {/* <Box
               display="flex"
@@ -117,26 +139,15 @@ const Sidebar = () => {
 
 
            
-          {isCollapsed && (
+          {/* {isCollapsed && (
             <IconButton sx={{ p: 3, justifyContent: "center"}}>
               <SearchIcon />
             </IconButton>
-          )}
-          {!isCollapsed && (
+          )} */}
+          {/* {!isCollapsed && (
             <BoxComponentx props={"Farm Details"}/>
-          )}
-         {!isCollapsed &&(
-         <Stack spacing={2} sx={{ width: "auto" }}>
-          <Autocomplete
-            options={data}
-            // options={data.map((option) => option.policyID)}
-            getOptionLabel={(option) => option.policyID}
-            onChange={(e, value) => {if(value!=null)sendData(e.target, value.geometry)}}
-            renderInput={(params) => <TextField {...params}
-            label="Search Policy ID.." />}
-          />  
-          </Stack>
-          )}
+          )} */}
+         
 
           {/* <BarSearch  placeHolder="Search" data={[]} />   */}
 
