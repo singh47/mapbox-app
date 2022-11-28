@@ -30,7 +30,7 @@ const Sidebar = () => {
 
   const [data, setData] = useState([]);
   const fetchdata = async () => {
-      const res = await axios.get('https://gist.githubusercontent.com/enukeWebDev/bbb5ec0b4459555a0c3573b3b6d7a200/raw/final_data.json');
+      const res = await axios.get('https://gist.githubusercontent.com/singh47/2cbc829ef507c519f05b3267a71f23fd/raw/06e7698219138ad943bfa8b5e77e4a1d3e81bcbc/test_data.json');
       setData(res.data);
   };
   useEffect(() => { fetchdata(); }, []);
@@ -64,7 +64,7 @@ const Sidebar = () => {
         <Menu iconShape="square">
           {/* LOGO AND MENU ICON */}
           <MenuItem
-            onClick={() => setIsCollapsed(!isCollapsed)}
+            onClick={() => setIsCollapsed(isCollapsed)}
             icon={isCollapsed ? <MenuOutlinedIcon /> : undefined}
             style={{
               margin: "10px 0 20px 0",
@@ -81,7 +81,7 @@ const Sidebar = () => {
               >
 
                 <Typography variant="h3" color={colors.grey[100]}>Farm Details</Typography>
-                <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
+                <IconButton onClick={() => setIsCollapsed(isCollapsed)}>
                   <MenuOutlinedIcon />
                 </IconButton>
               </Box>
@@ -95,20 +95,22 @@ const Sidebar = () => {
               margin: "10px 0 10px 0",
               color: colors.grey[100],
             }}>
+          </MenuItem>
+          
 
           {!isCollapsed &&(
-          <Stack spacing={2} sx={{ width: "auto" }}>
+          <Stack spacing={3} sx={{ width: "auto" }}>
             <Autocomplete
               options={data}
               // options={data.map((option) => option.policyID)}
-              getOptionLabel={(option) => option.policyID}
+              getOptionLabel={(option) => (option.farmerName+"\n"+option.policyID+ "\n" + option.township)}
               onChange={(e, value) => {if(value!=null)sendData(e.target, value.geometry)}}
               renderInput={(params) => <TextField {...params}
               label="Search Policy ID.." />}
+              open= "true"
             />  
           </Stack>
           )}
-          </MenuItem>
           
             {/* <Box
               display="flex"
