@@ -97,11 +97,19 @@ const Sidebar = () => {
             }}>
           </MenuItem>
           
-
           {!isCollapsed &&(
-          <Stack spacing={3} sx={{ width: "auto" }}>
+          <Stack spacing={3} sx={{ width: "auto" , height:"100vh"}}>
             <Autocomplete
+              ListboxProps={{style : {maxHeight: "75rem"}}}
               options={data}
+              // renderOption={(props, option) => {
+              //   const { title, color } = option;
+              //   return (
+              //     <span style={{ backgroundColor: 'red' }}>
+              //       {title}
+              //     </span>
+              //   );
+              // }}
               // options={data.map((option) => option.policyID)}
               getOptionLabel={(option) => (option.farmerName+"\n"+option.policyID+ "\n" + option.township)}
               onChange={(e, value) => {if(value!=null)sendData(e.target, value.geometry)}}
