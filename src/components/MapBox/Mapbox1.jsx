@@ -6,12 +6,13 @@ import Map, { Source, Layer, NavigationControl } from 'react-map-gl';
 import store from '../../store';
 import { useSelector, connect } from 'react-redux';
 //import { MapboxStyle, MapRef, MapLayerMouseEvent} from 'react-map-gl';
-//import {useRef} from 'react';
 //import bbox from '@turf/bbox';
-import {useState} from 'react';
+import {useState, useRef} from 'react';
+import { CenterFocusStrong } from '@mui/icons-material';
 
 function MapboxDemo1(props) {
   console.log('Bob the builder....');
+  const mapRef = useRef();
   const MAP_BOX_TOKEN =
     'pk.eyJ1IjoiZXJpY2tuMjMiLCJhIjoiY2w5ZWNhdnJ0NHRlbzN1bXg2amF0M3Z0ZyJ9.vKBBr7kcVq35_rLhMbfyQA';
   var long= -99;
@@ -31,9 +32,38 @@ function MapboxDemo1(props) {
 
 
 
-  //  const onClick= e => {
-  //   setPopupInfo(e);
-  //  }
+
+   const onClick= e => {
+    let center = [-118.4107187, 33.9415889]
+    console.log("click.....")
+    //console.log(mapRef);
+    //mapRef.current.flyTo(center)
+    console.log(props.long[0][0]);
+    console.log(mapRef);
+    console.log(e.lngLat);
+
+    let lnglat = [e.lngLat.lng, e.lngLat.lat];
+
+
+    mapRef.current.zoomTo(8, {
+      duration: 2000,
+      offset: lnglat
+      });
+
+map.jumpTo({
+center: [0, 0],
+zoom: 8,
+pitch: 45,
+bearing: 90
+});
+
+    // mapRef.current.Zoom({
+    //   center: props.long[0][0],
+    //   essential: true // this animation is considered essential with respect to prefers-reduced-motion
+    //   });
+
+    //e.flyTo={{ center: [-118.4107187, 33.9415889], essential: true }}
+   }
 
   //  const mapRef = useRef();
   //  const onClick = (event) => {
@@ -90,11 +120,12 @@ function MapboxDemo1(props) {
         // latitude: latt,
         zoom: 5.4,
       }}
+      ref={mapRef}
       style={{ width: 'auto', height: '90vh' }}
       mapStyle="mapbox://styles/erickn23/cl9f0c0go001f14p7ct0oqbqt"
       mapboxAccessToken={MAP_BOX_TOKEN}
       type="geojson"
-      //onClick={onClick}
+      onClick={onClick}
       data={{
         type: 'Feature',
         geometry: {
@@ -112,6 +143,7 @@ function MapboxDemo1(props) {
       //   latitude: latt,
       //   zoom: 5.4,
       // }}
+
     >
       <Source id="my-data" type="geojson" data={geojson}>
         <Layer {...addLayer} />
