@@ -122,47 +122,6 @@ const Sidebar = () => {
             />  
           </Stack>
           )}
-          
-            {/* <Box
-              display="flex"
-              backgroundColor={colors.primary[380]}
-              borderRadius="4px"
-              borderColor= {colors.primary[420]}
-              border="1px solid"
-            >
-              <InputBase sx={{ ml: 2, flex: 1 }} placeholder="Search" />
-              <IconButton type="button" sx={{ px: 3 }}>
-                <SearchIcon />
-              </IconButton>
-          </Box>  */}
-            {/* <Box
-              display="flex"
-              backgroundColor={colors.primary[200]}
-              borderRadius="3px"
-            >
-            
-            <SearchBar placeHolder="Enter your Policy ID..." data={[]} />  
-            </Box>        
-
-          {!isCollapsed && (
-            <Box mb="25px">
-              
-            </Box>
-          )}  */}
-
-
-           
-          {/* {isCollapsed && (
-            <IconButton sx={{ p: 3, justifyContent: "center"}}>
-              <SearchIcon />
-            </IconButton>
-          )} */}
-          {/* {!isCollapsed && (
-            <BoxComponentx props={"Farm Details"}/>
-          )} */}
-         
-
-          {/* <BarSearch  placeHolder="Search" data={[]} />   */}
 
         </Menu>
 
