@@ -30,59 +30,31 @@ function MapboxDemo1(props) {
     ],
   };
 
-
-
+  mapRef.current.flyTo({
+    center: props.long[0][0],
+    zoom: 9,
+    speed: 1.4,
+    curve: 1,
+    });
 
    const onClick= e => {
     let center = [-118.4107187, 33.9415889]
     console.log("click.....")
-    //console.log(mapRef);
-    //mapRef.current.flyTo(center)
     console.log(props.long[0][0]);
     console.log(mapRef);
     console.log(e.lngLat);
 
     let lnglat = [e.lngLat.lng, e.lngLat.lat];
 
+      mapRef.current.flyTo({
+        center: lnglat,
+        zoom: 9,
+        speed: 1.4,
+        curve: 1,
+        });
+  }
 
-    mapRef.current.zoomTo(8, {
-      duration: 2000,
-      offset: lnglat
-      });
 
-map.jumpTo({
-center: [0, 0],
-zoom: 8,
-pitch: 45,
-bearing: 90
-});
-
-    // mapRef.current.Zoom({
-    //   center: props.long[0][0],
-    //   essential: true // this animation is considered essential with respect to prefers-reduced-motion
-    //   });
-
-    //e.flyTo={{ center: [-118.4107187, 33.9415889], essential: true }}
-   }
-
-  //  const mapRef = useRef();
-  //  const onClick = (event) => {
-  //   console.log(event);
-  //   const feature = event.lngLat;
-  //   console.log(feature.lng);
-  //   if (feature) {
-  //     // calculate the bounding box of the feature
-  //     //const [minLng, minLat, maxLng, maxLat] =  //bbox(feature);
-
-  //     mapRef.current.fitBounds(
-  //       [
-  //         [feature.lng, feature.lat],
-  //         [feature.lng, feature.lat]
-  //       ],
-  //       {padding: 40, duration: 1000}
-  //     );
-  //   }
-  // };
 
   const layerStyle = {
     id: 'outline',
@@ -138,11 +110,6 @@ bearing: 90
         line_color: '#000',
         line_width: 3,
       }}
-      // viewState={{
-      //   longitude: long,
-      //   latitude: latt,
-      //   zoom: 5.4,
-      // }}
 
     >
       <Source id="my-data" type="geojson" data={geojson}>
