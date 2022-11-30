@@ -7,8 +7,9 @@ import store from '../../store';
 import { useSelector, connect } from 'react-redux';
 //import { MapboxStyle, MapRef, MapLayerMouseEvent} from 'react-map-gl';
 //import bbox from '@turf/bbox';
-import {useState, useRef} from 'react';
+import {useState, useRef, componentDidMount, useEffect} from 'react';
 import { CenterFocusStrong } from '@mui/icons-material';
+
 
 function MapboxDemo1(props) {
   console.log('Bob the builder....');
@@ -30,12 +31,16 @@ function MapboxDemo1(props) {
     ],
   };
 
-  mapRef.current.flyTo({
-    center: props.long[0][0],
-    zoom: 9,
-    speed: 1.4,
-    curve: 1,
-    });
+  useEffect(() => {
+    if(mapRef.current != null) {
+    mapRef.current.flyTo({
+      center: props.long[0][0],
+      zoom: 9,
+      speed: 1.4,
+      curve: 1,
+      });
+    }
+  })
 
    const onClick= e => {
     let center = [-118.4107187, 33.9415889]
