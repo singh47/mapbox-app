@@ -98,10 +98,11 @@ const Sidebar = () => {
           </MenuItem>
           
           {!isCollapsed &&(
-          <Stack spacing={3} sx={{ width: "auto" , height:"100vh"}}>
+          <Stack spacing={3} sx={{ width: "auto"}}>
             <Autocomplete
-              ListboxProps={{style : {maxHeight: "75rem"}}}
+              ListboxProps={{style : {maxHeight: "100vh"} , overflow:"hidden"}}
               options={data}
+
               // renderOption={(props, option) => {
               //   const { title, color } = option;
               //   return (
@@ -110,8 +111,10 @@ const Sidebar = () => {
               //     </span>
               //   );
               // }}
+              
               // options={data.map((option) => option.policyID)}
               getOptionLabel={(option) => (option.farmerName+"\n"+option.policyID+ "\n" + option.township)}
+              //getOptionLabel = {(option) => <p key={option.farmerName}>{option.farmerName}<br></br>{option.policyID}<br></br>{option.township}</p>}
               onChange={(e, value) => {if(value!=null)sendData(e.target, value.geometry)}}
               renderInput={(params) => <TextField {...params}
               label="Search Policy ID.." />}
