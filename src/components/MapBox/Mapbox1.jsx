@@ -25,7 +25,7 @@ function MapboxDemo1(props) {
         type: 'Feature',
         geometry: {
           type: 'Polygon',
-          coordinates: props.long,
+          coordinates: props.long.geometry,
         },
       },
     ],
@@ -34,7 +34,7 @@ function MapboxDemo1(props) {
   useEffect(() => {
     if(mapRef.current != null) {
     mapRef.current.flyTo({
-      center: props.long[0][0],
+      center: props.long.geometry[0][0],
       zoom: 9,
       speed: 1.4,
       curve: 1,
@@ -45,7 +45,7 @@ function MapboxDemo1(props) {
    const onClick= e => {
     let center = [-118.4107187, 33.9415889]
     console.log("click.....")
-    console.log(props.long[0][0]);
+    console.log(props.long.geometry[0][0]);
     console.log(mapRef);
     console.log(e.lngLat);
 

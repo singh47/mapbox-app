@@ -12,4 +12,5 @@ store.dispatch({type: 'long', long: [[-67.13734, 45.13745],
 [-69.06, 43.98],
 [-70.11617, 43.68405]]});
 
+
 export default store;

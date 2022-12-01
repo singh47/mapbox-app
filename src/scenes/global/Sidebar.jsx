@@ -38,6 +38,7 @@ const Sidebar = () => {
 
   function sendData(e, data) {
     store.dispatch({type: 'long', long: data});
+    //store.dispatch({type: 'gauge', long: data});
   }
 
   return (
@@ -122,7 +123,7 @@ const Sidebar = () => {
               // options={data.map((option) => option.policyID)}
               getOptionLabel={(option) => (option.farmerName+"\n"+option.policyID+ "\n" + option.township)}
              // getOptionLabel = {(option) => <p key={option.farmerName}><b>{option.farmerName}</b><br></br>{option.policyID}<br></br>{option.township}</p>}
-              onChange={(e, value) => {if(value!=null)sendData(e.target, value.geometry)}}
+              onChange={(e, value) => {if(value!=null)sendData(e.target, value)}}
               renderInput={(params) => <TextField {...params}
               label="Search Policy ID.." />}
               open= "true"

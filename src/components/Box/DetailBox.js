@@ -2,9 +2,10 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import { Stack } from '@mui/system';
 import GaugeChart from 'react-gauge-chart'
+import { connect } from 'react-redux';
 // import Button from '@mui/material/Button';
 
-export default function BoxComponent() {
+function BoxComponent(props) {
   const styles = {
     border: '1px solid rgba(0, 0, 0, 0.05)', 
   };
@@ -18,7 +19,7 @@ export default function BoxComponent() {
         nrOfLevels={420}
         arcsLength={[0.3, 0.5, 0.2]}
         colors={['#5BE12C', '#F5CD19', '#EA4228']}
-        percent={0.37}
+        percent={props.data.hbuMax * 0.01}
         arcPadding={0.02}
         needleColor="#FFFFFF" 
       />
@@ -29,7 +30,7 @@ export default function BoxComponent() {
       nrOfLevels={10} 
       arcsLength={[0.3, 0.5, 0.2]}
       cornerRadius={3} 
-      percent={0.6} 
+      percent={props.data.hbuTrigger * 0.01} 
       needleColor="#FFFFFF" 
     />
     <p style={{textAlign:"center"}}>GDD</p>
@@ -37,3 +38,11 @@ export default function BoxComponent() {
     </Stack>
   );
 }
+
+const mapStateToProps = (store) => {
+  return {
+    data: store,
+  };
+};
+
+export default connect(mapStateToProps)(BoxComponent);
