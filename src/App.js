@@ -7,6 +7,7 @@ import Sidebar from "./scenes/global/Sidebar";
 import Topbar from "./scenes/global/Topbar";
 import Dashboard from "./scenes/dashboard";
 import MapboxDemo1 from "./components/MapBox/Mapbox1";
+import DetailBox from "./components/Box/DetailBox";
 
 // import Team from "./scenes/team";
 // import Invoices from "./scenes/invoices";
@@ -30,6 +31,7 @@ const App = () => {
           <Sidebar />
           <main className="content">
             <Topbar />
+            <DetailBox />
             <MapboxDemo1 />
             <Routes>
               <Route path="/" element={<Dashboard />} />
