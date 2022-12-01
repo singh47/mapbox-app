@@ -103,6 +103,13 @@ const Sidebar = () => {
               ListboxProps={{style : {maxHeight: "100vh"} , overflow:"hidden"}}
               options={data}
 
+              renderOption={(props, option, { selected }) => (
+                <li {...props}>
+                  {option.farmerName}<br></br>
+                  {option.policyID}<br></br>
+                  {option.township}<br></br>
+                </li>
+              )}
               // renderOption={(props, option) => {
               //   const { title, color } = option;
               //   return (
