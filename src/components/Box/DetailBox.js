@@ -10,10 +10,16 @@ function BoxComponent(props) {
     border: '1px solid rgba(0, 0, 0, 0.05)', 
   };
 
+  if (!props.data.hbuMax) {
+    <Stack  sx={{ position:'absolute', top:'4.4rem', right:'10px', zIndex:'10', width:'15%'}}>
+      
+    </Stack>
+
+  }
+  else {
 
   return (
     <Stack  sx={{ position:'absolute', top:'4.4rem', right:'10px', zIndex:'10', width:'15%'}}>
-
 <span style={{ backgroundColor: 'rgba(20, 27, 45, .7)'}}>
       <GaugeChart id="gauge-chart1" 
         nrOfLevels={420}
@@ -37,6 +43,7 @@ function BoxComponent(props) {
 </span>
     </Stack>
   );
+  }
 }
 
 const mapStateToProps = (store) => {
