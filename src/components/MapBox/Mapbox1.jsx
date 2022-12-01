@@ -1,23 +1,23 @@
 import * as React from 'react';
 import './Mapbox1.scss';
 import Map, { Source, Layer, NavigationControl } from 'react-map-gl';
+import {  connect } from 'react-redux';
+import {useRef, useEffect} from 'react';
+
+// import { useSelector } from 'react-redux';
+// import {useState, componentDidMount} from 'react';
+// import store from '../../store';
+// import { CenterFocusStrong } from '@mui/icons-material';
+// import { MapboxStyle, MapRef, MapLayerMouseEvent} from 'react-map-gl';
+//  import bbox from '@turf/bbox';
 // import "mapbox-gl/dist/mapbox-gl.css";
 // import { MAP_BOX_TOKEN } from "../../utils/constants";
-import store from '../../store';
-import { useSelector, connect } from 'react-redux';
-//import { MapboxStyle, MapRef, MapLayerMouseEvent} from 'react-map-gl';
-//import bbox from '@turf/bbox';
-import {useState, useRef, componentDidMount, useEffect} from 'react';
-import { CenterFocusStrong } from '@mui/icons-material';
-
 
 function MapboxDemo1(props) {
   console.log('Bob the builder....');
   const mapRef = useRef();
   const MAP_BOX_TOKEN =
     'pk.eyJ1IjoiZXJpY2tuMjMiLCJhIjoiY2w5ZWNhdnJ0NHRlbzN1bXg2amF0M3Z0ZyJ9.vKBBr7kcVq35_rLhMbfyQA';
-  var long= -99;
-  var latt= 52;
   const geojson = {
     type: 'FeatureCollection',
     features: [
@@ -43,7 +43,7 @@ function MapboxDemo1(props) {
   })
 
    const onClick= e => {
-    let center = [-118.4107187, 33.9415889]
+    // let center = [-118.4107187, 33.9415889]
     console.log("click.....")
     console.log(props.long.geometry[0][0]);
     console.log(mapRef);

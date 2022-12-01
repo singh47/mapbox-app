@@ -1,27 +1,25 @@
 import { useState } from "react";
 import { ProSidebar, Menu, MenuItem } from "react-pro-sidebar";
-import { Box, IconButton, Typography, useTheme } from "@mui/material";
-
-import SearchBar from "../../components/SearchBar/SearchBar";
-import BarSearch from "../../components/SearchBar/BarSearch";
-
 import "react-pro-sidebar/dist/css/styles.css";
-
-import { tokens } from "../../theme";
-import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import axios from 'axios';
-import {useEffect, componentDidMount} from 'react';
-import BoxComponentx from "../../components/Box/DetailBox";
-
-import InputBase from "@mui/material/InputBase";
-import SearchIcon from "@mui/icons-material/Search";
+import {useEffect} from 'react';
 import store from "../../store";
 
-
+import { tokens } from "../../theme";
+import { Box, IconButton, Typography, useTheme } from "@mui/material";
+import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
+import { HomeOutlined } from "@mui/icons-material";
+import SearchIcon from "@mui/icons-material/Search";
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import Autocomplete from '@mui/material/Autocomplete';
 
+
+// import {componentDidMount} from 'react';
+// import BarSearch from "../../components/SearchBar/BarSearch";
+// import SearchBar from "../../components/SearchBar/SearchBar";
+// import BoxComponentx from "../../components/Box/DetailBox";
+// import InputBase from "@mui/material/InputBase";
 
 const Sidebar = () => {
   const theme = useTheme();
@@ -80,10 +78,9 @@ const Sidebar = () => {
                 alignItems="center"
                 ml="15px"
               >
-
                 <Typography variant="h3" color={colors.grey[100]}>Farm Details</Typography>
-                <IconButton onClick={() => setIsCollapsed(isCollapsed)}>
-                  <MenuOutlinedIcon />
+                <IconButton onClick={() => {window.location.reload()}}>
+                  <HomeOutlined />
                 </IconButton>
               </Box>
             )}
