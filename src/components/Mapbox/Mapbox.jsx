@@ -145,33 +145,33 @@
  * This component is passed in the App.js
  */
 
-import * as React from 'react';
-import Map, { Source, Layer, NavigationControl } from 'react-map-gl';
-import { connect } from 'react-redux';
-import { useRef, useEffect } from 'react';
-import 'mapbox-gl/dist/mapbox-gl.css';
-import { tokens } from '../../theme';
-import { Box, useTheme } from '@mui/material';
-import { MAP_BOX_TOKEN, MAP_BOX_STYLE_CHOROPLETH } from '../../utils/constants';
+import * as React from "react";
+import Map, { Source, Layer, NavigationControl } from "react-map-gl";
+import { connect } from "react-redux";
+import { useRef, useEffect } from "react";
+import "mapbox-gl/dist/mapbox-gl.css";
+import { tokens } from "../../theme";
+import { Box, useTheme } from "@mui/material";
+import { MAP_BOX_TOKEN, MAP_BOX_STYLE_CHOROPLETH } from "../../utils/constants";
+import DetailBox from "../DetailBox/DetailBox";
 // import { MAP_BOX_TOKEN, MAP_BOX_STYLE_3D } from "../../utils/constants";
 
 const CortevaMap = (props) => {
-  console.log('Bob the builder....');
+  console.log("Bob the builder....");
   console.log(props);
   console.log(props.long.farmerName);
-  // let fN = props.long.farmerName;
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
   const mapRef = useRef();
 
   const geojson = {
-    type: 'FeatureCollection',
+    type: "FeatureCollection",
     features: [
       {
-        type: 'Feature',
+        type: "Feature",
         geometry: {
-          type: 'Polygon',
+          type: "Polygon",
           coordinates: props.long.geometry,
         },
       },
@@ -191,7 +191,7 @@ const CortevaMap = (props) => {
 
   const onClick = (e) => {
     // Debugging purpose
-    console.log('click.....');
+    console.log("click.....");
     // console.log(props.long.geometry[0][0]);
     console.log(mapRef);
     console.log(e.lngLat);
@@ -209,31 +209,31 @@ const CortevaMap = (props) => {
   };
 
   const layerStyle = {
-    id: 'outline',
-    type: 'line',
-    source: 'maine',
+    id: "outline",
+    type: "line",
+    source: "maine",
     layout: {
       // "text-field": "fN",
       // "text-size": 16,
       // "text-offset": [0, -1.5],
     },
     paint: {
-      'line-color': '#000',
-      'line-width': 3,
+      "line-color": "#000",
+      "line-width": 3,
     },
   };
 
   const addLayer = {
-    id: 'fill',
-    type: 'fill',
+    id: "fill",
+    type: "fill",
     layout: {
       // "text-field": ["get", "lnglat"],
       // "text-size": 16,
       // "text-offset": [0, -1.5],
     },
     paint: {
-      'fill-color': '#0080ff', // Blue color fill
-      'fill-opacity': 0.5,
+      "fill-color": "#0080ff", // Blue color fill
+      "fill-opacity": 0.5,
     },
   };
 
@@ -242,10 +242,14 @@ const CortevaMap = (props) => {
    */
   return (
     <Box
-      height="91vh"
+      height="100%"
+      width="100%"
+      minHeight="460px"
       border={`2px solid ${colors.grey[100]}`}
-      borderRadius="5px"
+      borderRadius="1px"
+      position="relative"
     >
+      <DetailBox />
       <Map
         initialViewState={{
           longitude: -105.88885,
@@ -253,21 +257,21 @@ const CortevaMap = (props) => {
           zoom: 5,
         }}
         ref={mapRef}
-        style={{ width: 'auto', height: '90vh' }}
+        style={{ width: "auto", height: "100%" }}
         mapStyle={MAP_BOX_STYLE_CHOROPLETH} // Chropleth Render
         // mapStyle={MAP_BOX_STYLE_3D} // 3D Render
         mapboxAccessToken={MAP_BOX_TOKEN}
         type="geojson"
         onClick={onClick}
         data={{
-          type: 'Feature',
+          type: "Feature",
           geometry: {
-            type: 'Polygon',
+            type: "Polygon",
             coordinates: [],
           },
         }}
         paint={{
-          line_color: '#000',
+          line_color: "#000",
           line_width: 3,
         }}
       >
@@ -275,7 +279,7 @@ const CortevaMap = (props) => {
           <Layer {...addLayer} />
           <Layer {...layerStyle} />
         </Source>
-
+          map.resize();
         <NavigationControl />
       </Map>
     </Box>

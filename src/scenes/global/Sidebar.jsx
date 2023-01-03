@@ -157,27 +157,28 @@
 // **************************************
 // This is the updated / cleaned up code
 
-import { useState } from 'react';
-import { ProSidebar, Menu, MenuItem } from 'react-pro-sidebar';
-import 'react-pro-sidebar/dist/css/styles.css';
-import axios from 'axios';
-import { useEffect } from 'react';
-import store from '../../store';
-import { tokens } from '../../theme';
-import { Box, useTheme } from '@mui/material';
+import { useState } from "react";
+import { ProSidebar, Menu, MenuItem } from "react-pro-sidebar";
+import "react-pro-sidebar/dist/css/styles.css";
+import axios from "axios";
+import { useEffect } from "react";
+import store from "../../store";
+import { tokens } from "../../theme";
+import { Box, useTheme } from "@mui/material";
 // import { Box, IconButton, Typography, useTheme } from "@mui/material";
-import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
+import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 // import { HomeOutlined } from "@mui/icons-material";
-import SearchIcon from '@mui/icons-material/Search';
-import TextField from '@mui/material/TextField';
-import Stack from '@mui/material/Stack';
-import Autocomplete from '@mui/material/Autocomplete';
-import { CORTEVA_DATA_API } from '../../utils/constants';
+import SearchIcon from "@mui/icons-material/Search";
+import TextField from "@mui/material/TextField";
+import Stack from "@mui/material/Stack";
+import Autocomplete from "@mui/material/Autocomplete";
+import { CORTEVA_DATA_API } from "../../utils/constants";
+import Topbar from "./Topbar";
+import { display } from "@mui/system";
 
 const Sidebar = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-  const [isCollapsed, setIsCollapsed] = useState(false);
 
   const [data, setData] = useState([]);
 
@@ -186,126 +187,89 @@ const Sidebar = () => {
     setData(res.data);
   };
 
+
   useEffect(() => {
     fetchdata();
   }, []);
-  console.log('api data', data); // Debugging purposes
+  console.log("api data", data); // Debugging purposes
 
   const sendData = (e, data) => {
-    store.dispatch({ type: 'long', long: data });
+    store.dispatch({ type: "long", long: data });
   };
 
   return (
     <Box
       sx={{
-        '& .pro-sidebar-inner': {
-          background: `${colors.primary[400]} !important`,
-        },
-        '& .pro-icon-wrapper': {
-          backgroundColor: 'transparent !important',
-        },
-        '& .pro-inner-item': {
-          padding: '5px 35px 5px 20px !important',
-        },
-        '& .pro-inner-item:hover': {
-          color: '#868dfb !important',
-        },
-        '& .pro-menu-item.active': {
-          color: '#6870fa !important',
-        },
+        height: { xs: "auto", sm: "100%" },
+        minHeight: { xs: "auto", sm: "520px" },
+        width: { xs: "100vw", sm: "500px" },
+        justifyContent: "center",
+        alignItems: "center",
+        p: 1,
       }}
     >
-      <ProSidebar collapsed={isCollapsed}>
-        <Menu iconShape="square">
-          {/* LOGO AND MENU ICON */}
-          <MenuItem
-            onClick={() => setIsCollapsed(isCollapsed)}
-            icon={isCollapsed ? <MenuOutlinedIcon /> : undefined}
-            style={{
-              margin: '10px 0 20px 0',
-              color: colors.grey[100],
+      <Stack
+        sx={{
+          alignItems: "center",
+          justifyContent: "center",
+          p: 0,
+          my: 2,
+        }}
+      >
+        <Box>
+          <img
+            alt="profile-user"
+            width="auto"
+            height="100px"
+            src={`../../assets/corteva.png`}
+            style={{ cursor: "pointer", borderRadius: "50%" }}
+            onClick={() => {
+              window.location.reload();
             }}
-          >
-            {!isCollapsed && (
-              <Box
-                display="flex"
-                justifyContent="space-between"
-                alignItems="center"
-                ml="15px"
-              >
-                {/* <Typography variant="h3" color={colors.grey[100]}>
-                   Farm Details
-                 </Typography> */}
-                <Box display="flex" justifyContent="center" alignItems="center">
-                  <img
-                    alt="profile-user"
-                    width="100%"
-                    height="100px"
-                    src={`../../assets/corteva.png`}
-                    style={{ cursor: 'pointer', borderRadius: '50%' }}
-                    onClick={() => {
-                      window.location.reload();
-                    }}
-                  />
-                </Box>
-                {/* <IconButton
-                   onClick={() => {
-                     window.location.reload();
-                   }}
-                 > */}
-                {/* <HomeOutlined />
-                 </IconButton> */}
-              </Box>
-            )}
-          </MenuItem>
+          />
+        </Box>
 
-          <MenuItem
-            icon={isCollapsed ? <SearchIcon /> : undefined}
-            style={{
-              margin: '1px 0 0 0',
-              color: colors.grey[100],
-            }}
-          ></MenuItem>
+        {console.log(window.innerWidth)}
 
-          {!isCollapsed && (
-            <Stack spacing={3} sx={{ width: 'auto' }}>
-              <Autocomplete
-                // sx={{ backgroundColor: "red" }}
-                ListboxProps={{
-                  style: { maxHeight: '82vh' },
-                  overflow: 'hidden',
-                }}
-                options={data}
-                renderOption={(props, option, { selected }) => (
-                  <li {...props}>
-                    {option.farmerName}
-                    <br></br>
-                    {option.policyID}
-                    <br></br>
-                    {option.township}
-                    <br></br>
-                  </li>
-                )}
-                getOptionLabel={(option) =>
-                  option.farmerName +
-                  ' - ' +
-                  option.township +
-                  ' - ' +
-                  option.policyID
-                }
-                // getOptionLabel = {(option) => <p key={option.farmerName}><b>{option.farmerName}</b><br></br>{option.policyID}<br></br>{option.township}</p>}
-                onChange={(e, value) => {
-                  if (value != null) sendData(e.target, value);
-                }}
-                renderInput={(params) => (
-                  <TextField {...params} label="Search Customer..." />
-                )}
-                open="true"
-              />
-            </Stack>
-          )}
-        </Menu>
-      </ProSidebar>
+        {( window.innerWidth > 600) && (
+          <Stack spacing={3} sx={{ width: "100%", maxWidth: "50ch", display:{ xs :"inline", sm:"inline"}, backgroundColor:"#1F2A40"}}>
+            <Autocomplete
+              ListboxProps={{
+                style: { maxHeight: "70vh", height: "auto", position: "absolute", backgroundColor:"#1F2A40" },
+              }}
+              backgroundColor ="#1F2A40"
+              options={data}
+              renderOption={(props, option, { selected }) => (
+                <li {...props}>
+                  {option.farmerName}
+                  <br></br>
+                  {option.policyID}
+                  <br></br>
+                  {option.township}
+                  <br></br>
+                </li>
+              )}
+              getOptionLabel={(option) =>
+                option.farmerName +
+                " - " +
+                option.township +
+                " - " +
+                option.policyID
+              }
+              onChange={(e, value) => {
+                if (value != null) sendData(e.target, value);
+              }}
+              renderInput={(params) => (
+                <TextField {...params} label="Search Customer..." />
+              )}
+              open={true}
+            
+            />
+          </Stack>
+        )}
+
+        
+      </Stack>
     </Box>
   );
 };

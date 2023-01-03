@@ -122,28 +122,27 @@
  * The color mode of this component is coming from theme.js
  */
 
-import { Box, IconButton, useTheme } from '@mui/material';
-import { tokens } from '../../theme';
-import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined';
+import { Box, IconButton, Typography, useTheme } from "@mui/material";
+import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
+import { StayPrimaryLandscape } from "@mui/icons-material";
 
 const Topbar = () => {
-  const theme = useTheme();
-  const colors = tokens(theme.palette.mode);
-
   return (
-    <Box display="flex" justifyContent="space-between" p={2}>
-      <Box
-        display="flex"
-        backgroundColor={colors.primary}
-        borderRadius="3px"
-      ></Box>
-
-      {/* ICONS */}
+    <Box
+      height={"60px"}
+      sx={{ display: { xs: "none", sm: "flex" } }}
+      alignItems="center"
+      justifyContent="flex-end"
+      p={2}
+      backgroundColor="#1F2A40"
+    >
       <Box display="space-between">
-        Welcome to Coretva Customer
-        <IconButton>
-          <PersonOutlinedIcon />
-        </IconButton>
+        <Typography variant="h5" sx={{ flexGrow: 1 }}>
+          Welcome to Corteva Customer
+          <IconButton>
+            <PersonOutlinedIcon />
+          </IconButton>
+        </Typography>
       </Box>
     </Box>
   );
