@@ -171,7 +171,7 @@ import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import SearchIcon from "@mui/icons-material/Search";
 import TextField from "@mui/material/TextField";
 import Stack from "@mui/material/Stack";
-import Autocomplete from "@mui/material/Autocomplete";
+import Autocomplete, { autocompleteClasses } from "@mui/material/Autocomplete";
 import { CORTEVA_DATA_API } from "../../utils/constants";
 import Topbar from "./Topbar";
 import { display } from "@mui/system";
@@ -181,12 +181,44 @@ const Sidebar = () => {
   const colors = tokens(theme.palette.mode);
 
   const [data, setData] = useState([]);
+  const [inputValue, setInputValue] = useState("");
+
+  var isDesktop = true;
+  if(window.innerWidth < 600) {
+      isDesktop = false;
+  }
+
+  const [open, setOpen] = useState(isDesktop);
 
   const fetchdata = async () => {
     const res = await axios.get(CORTEVA_DATA_API);
     setData(res.data);
   };
 
+  const handleOpen = () => {
+    if (isDesktop == false) {
+      if (inputValue.length > 0) {
+        setOpen(true);
+      }
+    }
+  };
+
+  const handleClose = () => {
+    if (isDesktop == false) {
+     setOpen(false)
+    }
+  }
+
+  const handleInputChange = (event, newInputValue) => {
+    if (isDesktop == false) {
+        setInputValue(newInputValue);
+        if (newInputValue.length > 0) {
+          setOpen(true);
+        } else {
+          setOpen(false);
+        }
+    }
+  };
 
   useEffect(() => {
     fetchdata();
@@ -231,13 +263,12 @@ const Sidebar = () => {
 
         {console.log(window.innerWidth)}
 
-        {( window.innerWidth > 600) && (
           <Stack spacing={3} sx={{ width: "100%", maxWidth: "50ch", display:{ xs :"inline", sm:"inline"}, backgroundColor:"#1F2A40"}}>
             <Autocomplete
               ListboxProps={{
                 style: { maxHeight: "70vh", height: "auto", position: "absolute", backgroundColor:"#1F2A40" },
               }}
-              backgroundColor ="#1F2A40"
+              backgroundColor ="#1F2A60"
               options={data}
               renderOption={(props, option, { selected }) => (
                 <li {...props}>
@@ -262,12 +293,12 @@ const Sidebar = () => {
               renderInput={(params) => (
                 <TextField {...params} label="Search Customer..." />
               )}
-              open={true}
-            
+              open={open}
+              onOpen={handleOpen}
+              onClose={handleClose}
+              onInputChange={handleInputChange}
             />
           </Stack>
-        )}
-
         
       </Stack>
     </Box>
