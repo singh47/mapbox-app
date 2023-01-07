@@ -229,9 +229,8 @@ const Sidebar = () => {
           />
         </Box>
 
-        {console.log(window.innerWidth)}
 
-        {( window.innerWidth > 600) && (
+        { (
           <Stack spacing={3} sx={{ width: "100%", maxWidth: "50ch", display:{ xs :"inline", sm:"inline"}, backgroundColor:"#1F2A40"}}>
             <Autocomplete
               ListboxProps={{
@@ -262,7 +261,7 @@ const Sidebar = () => {
               renderInput={(params) => (
                 <TextField {...params} label="Search Customer..." />
               )}
-              open={true}
+              // open={true}
             
             />
           </Stack>
