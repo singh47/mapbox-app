@@ -164,7 +164,7 @@ import axios from "axios";
 import { useEffect } from "react";
 import store from "../../store";
 import { tokens } from "../../theme";
-import { Box, useTheme } from "@mui/material";
+import { Box, useTheme, IconButton } from "@mui/material";
 // import { Box, IconButton, Typography, useTheme } from "@mui/material";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 // import { HomeOutlined } from "@mui/icons-material";
@@ -175,6 +175,7 @@ import Autocomplete, { autocompleteClasses } from "@mui/material/Autocomplete";
 import { CORTEVA_DATA_API } from "../../utils/constants";
 import Topbar from "./Topbar";
 import { display } from "@mui/system";
+import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 
 const Sidebar = () => {
   const theme = useTheme();
@@ -223,7 +224,6 @@ const Sidebar = () => {
   useEffect(() => {
     fetchdata();
   }, []);
-  console.log("api data", data); // Debugging purposes
 
   const sendData = (e, data) => {
     store.dispatch({ type: "long", long: data });
@@ -240,15 +240,24 @@ const Sidebar = () => {
         p: 1,
       }}
     >
+
       <Stack
         sx={{
-          alignItems: "center",
+          alignItems: {sm:"center"},
           justifyContent: "center",
           p: 0,
           my: 2,
         }}
       >
-        <Box>
+
+        <Box 
+        sx={{display: "flex",
+        justifyContent: "space-between",
+        paddingBottom: "8px",
+        paddingX: 2,
+        paddingRight: 6}}
+
+        >
           <img
             alt="profile-user"
             width="auto"
@@ -259,14 +268,22 @@ const Sidebar = () => {
               window.location.reload();
             }}
           />
+
+          <IconButton
+            sx={{
+                display: {xs: "flex", sm: "none"}
+            }}
+                >
+          <PersonOutlinedIcon fontSize="large" />
+          </IconButton>
+
         </Box>
 
-        {console.log(window.innerWidth)}
 
-          <Stack spacing={3} sx={{ width: "100%", maxWidth: "50ch", display:{ xs :"inline", sm:"inline"}, backgroundColor:"#1F2A40"}}>
+          <Stack spacing={3} sx={{ width: "100%", maxWidth: "100%", display:{ xs :"inline", sm:"inline"}, backgroundColor:"#1F2A40"}}>
             <Autocomplete
               ListboxProps={{
-                style: { maxHeight: "70vh", height: "auto", position: "absolute", backgroundColor:"#1F2A40" },
+                style: { width: "100%", maxHeight: "70vh", height: "auto", position: "absolute", backgroundColor:"#1F2A40" },
               }}
               backgroundColor ="#1F2A60"
               options={data}

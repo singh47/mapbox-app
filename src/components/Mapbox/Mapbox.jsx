@@ -162,8 +162,17 @@ const CortevaMap = (props) => {
   console.log(props.long.farmerName);
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-
   const mapRef = useRef();
+
+  var initialMapZoom = 5;
+
+  var isDesktop = true;
+
+  // mobile specific code
+  if(window.innerWidth < 600) {
+      initialMapZoom = 3.5;
+      isDesktop = false;
+  }
 
   const geojson = {
     type: "FeatureCollection",
@@ -190,13 +199,6 @@ const CortevaMap = (props) => {
   });
 
   const onClick = (e) => {
-    // Debugging purpose
-    console.log("click.....");
-    // console.log(props.long.geometry[0][0]);
-    console.log(mapRef);
-    console.log(e.lngLat);
-    console.log(e);
-    // console.log(e.target.style.availableImage);
 
     let lnglat = [e.lngLat.lng, e.lngLat.lat];
 
@@ -254,7 +256,7 @@ const CortevaMap = (props) => {
         initialViewState={{
           longitude: -105.88885,
           latitude: 54.418583,
-          zoom: 5,
+          zoom: initialMapZoom,
         }}
         ref={mapRef}
         style={{ width: "auto", height: "100%" }}
@@ -280,7 +282,7 @@ const CortevaMap = (props) => {
           <Layer {...layerStyle} />
         </Source>
           map.resize();
-        <NavigationControl />
+        <NavigationControl position="bottom-left"/>
       </Map>
     </Box>
   );
