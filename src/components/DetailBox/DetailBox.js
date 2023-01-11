@@ -95,7 +95,7 @@ const BoxComponent = (props) => {
       style={styles}
       sx={{
         position: "absolute",
-        bottom: 0,
+        top: 0,
         right: 0,
         zIndex: "10",
         width: "15%",
@@ -108,7 +108,7 @@ const BoxComponent = (props) => {
       <Stack
         sx={{
           position: "absolute",
-          bottom: 0,
+          top: 0,
           right: 0,
           zIndex: "10",
           width: "7rem",
