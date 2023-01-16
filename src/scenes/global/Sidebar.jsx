@@ -246,7 +246,7 @@ const Sidebar = () => {
           alignItems: {sm:"center"},
           justifyContent: "center",
           p: 0,
-          my: 2,
+          my: 2
         }}
       >
 
@@ -279,13 +279,12 @@ const Sidebar = () => {
 
         </Box>
 
-
-          <Stack spacing={3} sx={{ width: "100%", maxWidth: "100%", display:{ xs :"inline", sm:"inline"}, backgroundColor:"#1F2A40"}}>
+          <Stack spacing={3} sx={{ width: "100%", height: "auto", maxWidth: "100%", display:{ xs :"inline", sm:"inline"}, backgroundColor:"#141B2D"}}>
+            
             <Autocomplete
               ListboxProps={{
-                style: { width: "100%", maxHeight: "70vh", height: "auto", position: "absolute", backgroundColor:"#1F2A40" },
+                style: { width: "100%", maxHeight: "70vh" ,height: "auto", position: "relative", backgroundColor:"#141B2D"},
               }}
-              backgroundColor ="#1F2A60"
               options={data}
               renderOption={(props, option, { selected }) => (
                 <li {...props}>
@@ -316,7 +315,6 @@ const Sidebar = () => {
               onInputChange={handleInputChange}
             />
           </Stack>
-        
       </Stack>
     </Box>
   );

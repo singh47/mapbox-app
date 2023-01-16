@@ -157,9 +157,17 @@ import DetailBox from "../DetailBox/DetailBox";
 // import { MAP_BOX_TOKEN, MAP_BOX_STYLE_3D } from "../../utils/constants";
 
 const CortevaMap = (props) => {
-  console.log("Bob the builder....");
   console.log(props);
-  console.log(props.long.farmerName);
+
+  var geoArray = props.long.geometry;
+  var geoType = "Polygon";
+
+  // initial values when not called with props
+  if (geoArray ==  null){
+    geoArray = [-122.4, 37.8];
+    geoType = "Point";
+  }
+
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const mapRef = useRef();
@@ -180,13 +188,13 @@ const CortevaMap = (props) => {
       {
         type: "Feature",
         geometry: {
-          type: "Polygon",
-          coordinates: props.long.geometry,
+          type: geoType,
+          coordinates: geoArray,
         },
       },
     ],
   };
-
+  
   useEffect(() => {
     if (mapRef.current != null) {
       mapRef.current.flyTo({
@@ -277,7 +285,7 @@ const CortevaMap = (props) => {
           line_width: 3,
         }}
       >
-        <Source id="my-data" type="geojson" data={geojson}>
+        <Source id="geoData" type="geojson" data={geojson}>
           <Layer {...addLayer} />
           <Layer {...layerStyle} />
         </Source>
