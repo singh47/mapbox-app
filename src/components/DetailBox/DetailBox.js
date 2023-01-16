@@ -90,6 +90,16 @@ const BoxComponent = (props) => {
     border: "1px solid rgba(0, 0, 0, 0.05)",
   };
 
+  var isDesktop = true;
+  var gaugeSize = "15%";
+
+  // mobile specific code
+  if(window.innerWidth < 600) {
+      isDesktop = false;
+      gaugeSize = "7rem"
+
+  }
+
   if (!props.data.hbuMax) {
     <Stack
       style={styles}
@@ -111,7 +121,7 @@ const BoxComponent = (props) => {
           top: 0,
           right: 0,
           zIndex: "10",
-          width: "7rem",
+          width: gaugeSize,
           display: "flex",
           flexDirection:{xs:"column", sm:"column"},
 
