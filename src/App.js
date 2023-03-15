@@ -63,8 +63,10 @@ import { Box, CssBaseline, ThemeProvider } from '@mui/material';
 import { Routes, Route } from 'react-router-dom';
 import Sidebar from './scenes/global/Sidebar';
 import Topbar from './scenes/global/Topbar';
-import CortevaMap from './components/MapBox/Mapbox';
-import DetailBox from './components/DetailBox/DetailBox';
+import CortevaMap from './components/mapbox/Mapbox';
+import DetailBox from './components/detailbox/DetailBox';
+
+//is login state
 
 const App = () => {
   const [theme, colorMode] = useMode();

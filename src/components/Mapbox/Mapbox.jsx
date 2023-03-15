@@ -153,7 +153,7 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import { tokens } from "../../theme";
 import { Box, useTheme } from "@mui/material";
 import { MAP_BOX_TOKEN, MAP_BOX_STYLE_CHOROPLETH } from "../../utils/constants";
-import DetailBox from "../DetailBox/DetailBox";
+import DetailBox from "../detailbox/DetailBox";
 // import { MAP_BOX_TOKEN, MAP_BOX_STYLE_3D } from "../../utils/constants";
 
 const CortevaMap = (props) => {
