@@ -156,7 +156,7 @@ import { MAP_BOX_TOKEN, MAP_BOX_STYLE_CHOROPLETH } from "../../utils/constants";
 import DetailBox from "../detailbox/DetailBox";
 // import { MAP_BOX_TOKEN, MAP_BOX_STYLE_3D } from "../../utils/constants";
 
-const MapBox = (props) => {
+const CortevaMap = (props) => {
   console.log(props);
 
   var geoArray = props.long.geometry;
@@ -302,4 +302,4 @@ const mapStateToProps = (store) => {
   };
 };
 
-export default connect(mapStateToProps)(MapBox);
+export default connect(mapStateToProps)(CortevaMap);

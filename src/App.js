@@ -63,7 +63,7 @@ import { Box, CssBaseline, ThemeProvider } from '@mui/material';
 import { Routes, Route } from 'react-router-dom';
 import Sidebar from './scenes/global/Sidebar';
 import Topbar from './scenes/global/Topbar';
-import MapBox from './components/mapbox/MapBox';
+import CortevaMap from './components/mapbox/MapBox';
 import DetailBox from './components/detailbox/DetailBox';
 
 //is login state
@@ -87,7 +87,7 @@ const App = () => {
           <Sidebar />
           <main className="content">
             <Topbar />
-            <MapBox/>
+            <CortevaMap/>
           </main>
         </Box>
       </ThemeProvider>
